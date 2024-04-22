@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Карточка героя</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="character-card">
+    <img th:src="${character.image}" class="character-image"/>
+    <h2 th:text="${character.name}"></h2>
+    <p>Status: <span th:text="${character.status}"></span></p>
+    <p>Species: <span th:text="${character.species}"></span></p>
+    <p>Gender: <span th:text="${character.gender}"></span></p>
+    <p>Origin: <span th:text="${character.origin.name}"></span></p>
+    <p>Location: <span th:text="${character.location.name}"></span></p>
+    <div class="episode-list">
+      <p>Episodes:</p>
+      <ul>
+        <li th:each="episode : ${character.episode}">
+          <a th:href="@{__${episode}__}" th:text="${episode}"></a>
+        </li>
+      </ul>
+    </div>
+    <form th:action="@{/api/characters}" method="get">
+      <button type="submit">Назад</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

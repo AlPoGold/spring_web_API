@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Список героев</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body>
+<div class="container">
+  <h2>Список героев</h2>
+  <div class="characters">
+    <div class="character-card" th:each="character : ${characters}">
+      <img th:src="${character.image}" class="character-image"/>
+      <p th:text="${character.name}"></p>
+      <form th:action="@{/api/character}" method="get">
+        <input type="hidden" name="characterId" th:value="${character.id}"/>
+        <button type="submit">Выбрать</button>
+      </form>
+    </div>
+  </div>
+  <div class="pagination">
+    <div th:if="${page > 0}">
+      <a th:href="@{/api/characters(page=${page - 1})}">&laquo; Предыдущая</a>
+    </div>
+    <div th:if="${hasNext}">
+      <a th:href="@{/api/characters(page=${page + 1})}">Следующая &raquo;</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
