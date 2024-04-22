@@ -21,7 +21,7 @@ public class RickMortyCharController {
     private String CHAR_URL;
 
     @GetMapping("/characters")
-    public String getCharacters(Model model, @RequestParam(defaultValue = "0") int page) {
+    public String getCharacters(Model model, @RequestParam(defaultValue = "1") int page) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CharacterResponse> response = restTemplate.getForEntity(CHAR_URL + "?page=" + page, CharacterResponse.class);
         CharacterResponse characterResponse = response.getBody();

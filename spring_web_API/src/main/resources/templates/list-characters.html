@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Список героев</title>
-  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 <div class="container">
@@ -18,13 +18,15 @@
       </form>
     </div>
   </div>
-  <div class="pagination">
-    <div th:if="${page > 0}">
-      <a th:href="@{/api/characters(page=${page - 1})}">&laquo; Предыдущая</a>
-    </div>
-    <div th:if="${hasNext}">
-      <a th:href="@{/api/characters(page=${page + 1})}">Следующая &raquo;</a>
-    </div>
+  <div class="footer">
+    <form th:if="${page > 0}" th:action="@{/api/characters}" method="get">
+      <input type="hidden" name="page" th:value="${page - 1}" />
+      <button type="submit" class="btn">&laquo; Назад</button>
+    </form>
+    <form th:if="${hasNext}" th:action="@{/api/characters}" method="get">
+      <input type="hidden" name="page" th:value="${page + 1}" />
+      <button type="submit" class="btn">Вперед &raquo;</button>
+    </form>
   </div>
 </div>
 </body>

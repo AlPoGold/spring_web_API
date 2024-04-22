@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Карточка героя</title>
-  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 <div class="container">
-  <div class="character-card">
+  <div class="character-card single">
     <img th:src="${character.image}" class="character-image"/>
     <h2 th:text="${character.name}"></h2>
-    <p>Status: <span th:text="${character.status}"></span></p>
-    <p>Species: <span th:text="${character.species}"></span></p>
-    <p>Gender: <span th:text="${character.gender}"></span></p>
-    <p>Origin: <span th:text="${character.origin.name}"></span></p>
-    <p>Location: <span th:text="${character.location.name}"></span></p>
+    <p><span style="font-weight:bold;">Status:</span> <span th:text="${character.status}"></span></p>
+    <p><span style="font-weight:bold;">Species:</span> <span th:text="${character.species}"></span></p>
+    <p><span style="font-weight:bold;">Gender:</span> <span th:text="${character.gender}"></span></p>
+    <p><span style="font-weight:bold;">Origin:</span> <span th:text="${character.origin.name}"></span></p>
+    <p><span style="font-weight:bold;">Location:</span> <span th:text="${character.location.name}"></span></p>
     <div class="episode-list">
-      <p>Episodes:</p>
+      <p><span style="font-weight:bold;">Episodes:</span></p>
       <ul>
         <li th:each="episode : ${character.episode}">
           <a th:href="@{__${episode}__}" th:text="${episode}"></a>
